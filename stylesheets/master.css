@@ -72,11 +72,11 @@ body {
 .projects {
   padding-left: 20px;
 }
-.posts    .post    .title,
+/*.posts    .post    .title,
 .projects .project .title {
   margin-top: 30px;
   font-size: 20px;
-}
+}*/
 .posts    .post    .date,
 .projects .project .date {
   margin-left: 15px;
@@ -97,6 +97,7 @@ body {
 
 .post h1 {
   margin-bottom: 0px;
+  font-size: 23px;
 }
 .post h2 {
   clear: both;
