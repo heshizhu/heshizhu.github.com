@@ -18,6 +18,12 @@ body {
   font-size: 30px;
   margin-left: 20px;
 }
+#indexheader h1 {
+  float: left;
+  width: 500px;
+  font-size: 25px;
+  margin-left: 20px;
+}
 #header #menu {
   float: right;
   margin: 10px;
