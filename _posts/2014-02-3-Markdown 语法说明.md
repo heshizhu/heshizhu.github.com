@@ -1,6 +1,6 @@
 ---
-layout:article
-title:Markdown 语法说明
+layout: article
+title: Markdown 语法说明
 ---
 
 This is an H1
