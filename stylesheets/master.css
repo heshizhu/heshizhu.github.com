@@ -64,7 +64,7 @@ body {
 
 .posts,
 .projects {
-/*  padding-left: 20px;*/
+  padding-left: 20px;
 }
 .posts    .post    .title,
 .projects .project .title {
