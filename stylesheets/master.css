@@ -15,7 +15,7 @@ body {
 #header h1 {
   float: left;
   width: 500px;
-  font-size: 48px;
+  font-size: 30px;
   margin-left: 20px;
 }
 #header #menu {
@@ -100,9 +100,9 @@ body {
 .post h3 {
   font-variant: small-caps;
 }
-.date {
+/*.date {
   font-style: italic;
-}
+}*/
 .post pre.old_code {
   background-color: #F5F6E7;
 }
