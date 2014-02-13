@@ -39,6 +39,8 @@ body {
 }
 
 #sidebar {
+  width: 100px;
+  margin-top: 10px;
   float: right;
 }
 
@@ -80,6 +82,7 @@ body {
 .posts,
 .projects {
   padding-left: 20px;
+  padding-right: 100px;
 }
 /*.posts    .post    .title,
 .projects .project .title {
