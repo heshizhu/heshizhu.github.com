@@ -3,8 +3,8 @@ layout: master
 ---
 
     <div class="post">
-        <h2>{{ page.title}}</h2>
-        <div class="date">{{ page.date | date: "%Y年%m月%d日" }}</div>  
+        <h4>{{ page.title}}</h4>
+        {{ page.date | date: "%Y年%m月%d日" }}
     </div>
     <div class="body">
         {{ content }}
