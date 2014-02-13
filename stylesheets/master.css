@@ -39,9 +39,9 @@ body {
 }
 
 #sidebar {
-  width: 90px;
+/*  width: 90px;
   margin-top: 10px;
-  float: right;
+  float: right;*/
 }
 
 #sidebar #recentcomments {
