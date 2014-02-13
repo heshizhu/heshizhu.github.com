@@ -4,13 +4,12 @@ body {
 
 #site {
   width: 1000px;
-  margin: 20px;
-  background: #dddddd;
+  margin: 0px auto;
+  background: #FFFFFF;
 }
 
 #header {
   height: 100px;
-  margin: 20px;
   background: #dddddd;
 }
 #header h1 {
