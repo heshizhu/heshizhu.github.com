@@ -69,7 +69,7 @@ body {
 .posts    .post    .title,
 .projects .project .title {
   margin-top: 30px;
-  font-size: 24px;
+  font-size: 20px;
 }
 .posts    .post    .date,
 .projects .project .date {
