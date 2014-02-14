@@ -45,7 +45,7 @@ body {
 }
 
 #sidebar #recentcomments {
-
+  padding-left: 20px;
 }
 
 #about_me {
@@ -82,7 +82,7 @@ body {
 .posts,
 .projects {
   padding-left: 20px;
-  padding-right: 100px;
+  /*padding-right: 100px;*/
 }
 /*.posts    .post    .title,
 .projects .project .title {
