@@ -17,7 +17,7 @@ title: Alex He的个人博客
     <!--
     #<div class="extract">{{post.content | strip_html | truncatewords:30}}</div>
     -->
-    <div class="extract">{{post.content | strip_html | linebreaks | slice:":6" }}</div>
+    <div class="extract">{{post.content | strip_html | extract_excerpt }}</div>
   </div>
   <br/>
   {% endfor %}
