@@ -4,29 +4,24 @@ title: Alex He的个人博客
 ---
 
 
+<div id = "indexheader">  
+  <h1>最新文章</h1>
+</div>
+<div class="clearfix"/>
 
-<div style="display:inline-block">  
-
-  <div id = "indexheader">  
-    <h1>最新文章</h1>
+<div class="posts">
+  {% for post in site.posts %}
+  <div class="post">
+    <div class="title"><a href="{{ post.url }}">{{ post.title }}</a></div>
+    <div class="date">{{ post.date | date: "%Y年%m月%d日" }}</div>
+    <div class="extract">{{post.content | strip_html | truncatewords:100}}</div>      
   </div>
-  <div class="clearfix"/>
-
-  <div class="posts">
-    {% for post in site.posts %}
-      <div class="post">
-        <div class="title"><a href="{{ post.url }}">{{ post.title }}</a></div>
-        <div class="date">{{ post.date | date: "%Y年%m月%d日" }}</div>
-        <div class="extract">{{post.content | strip_html | truncatewords:100}}</div>      
-      </div>
-  	<br/>
-    {% endfor %}
-  </div>
+  <br/>
+  {% endfor %}
 </div>
 
 
-
-<div id="sidebar" style="display:inline-block">
+<div id="sidebar">
 	<div id="recentcomments" class="dsq-widget">
 		<h2 class="dsq-widget-title">最近的评论</h2>
 		<script type="text/javascript" src="http://zhulin.disqus.com/recent_comments_widget.js?num_items=10&hide_avatars=0&avatar_size=32&excerpt_length=200"></script>
