@@ -10,7 +10,7 @@ title: Alex He的个人博客
 <div class="clearfix"/>
 
 <div class="posts">
-  {% for post in site.posts[:2] %}
+  {% for post in site.posts %}
   <div class="post">
     <div class="title"><a href="{{ post.url }}">{{ post.title }}</a></div>
     <div class="date">{{ post.date | date: "%Y年%m月%d日" }}</div>
