@@ -3,20 +3,23 @@ layout: master
 title: Alex He的个人博客
 ---
 
-<div id = "indexheader" style="display:inline">  
-  <h1>最新文章</h1>
-</div>
-<div class="clearfix"/>
+<div style="display:inline">  
 
-<div class="posts">
-  {% for post in site.posts %}
-    <div class="post">
-      <div class="title"><a href="{{ post.url }}">{{ post.title }}</a></div>
-      <div class="date">{{ post.date | date: "%Y年%m月%d日" }}</div>
-      <div class="extract">{{post.content | strip_html | truncatewords:100}}</div>      
-    </div>
-	<br/>
-  {% endfor %}
+  <div id = "indexheader">  
+    <h1>最新文章</h1>
+  </div>
+  <div class="clearfix"/>
+
+  <div class="posts">
+    {% for post in site.posts %}
+      <div class="post">
+        <div class="title"><a href="{{ post.url }}">{{ post.title }}</a></div>
+        <div class="date">{{ post.date | date: "%Y年%m月%d日" }}</div>
+        <div class="extract">{{post.content | strip_html | truncatewords:100}}</div>      
+      </div>
+  	<br/>
+    {% endfor %}
+  </div>
 </div>
 
 
