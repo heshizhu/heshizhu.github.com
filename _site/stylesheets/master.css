@@ -1,0 +1,182 @@
+body {
+  background-color: #AAAAAA;
+}
+
+#site {
+  width: 1000px;
+  margin: 0px auto;
+  background: #FFFFFF;
+}
+
+#header {
+  height: 70px;
+  background: #dddddd;
+}
+#header h1 {
+  float: left;
+  width: 500px;
+  font-size: 30px;
+  margin-left: 20px;
+}
+#indexheader h1 {
+  float: left;
+  width: 500px;
+  font-size: 25px;
+  margin-left: 20px;
+}
+#header #menu {
+  float: right;
+  margin: 10px;
+}
+#header #menu a {
+  display: block;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 18px;
+  vertical-align: bottom;
+  text-align: center;
+}
+
+#sidebar {
+/*  width: 90px;
+  margin-top: 10px;
+  float: right;*/
+}
+
+#sidebar #recentcomments {
+  padding-left: 20px;
+}
+
+#about_me {
+/*  background-image: url(https://secure.gravatar.com/avatar/f4252ea05ddfbeb7b1803e9941ea46aa?s=40);*/
+}
+
+#footer {
+  margin: 20px;
+  padding-bottom: 10px;
+}
+
+#content {
+  margin: 20px;
+}
+
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.clearfix {
+  clear:both;
+}
+.articles_header {
+  clear: both;
+  content: ' ';
+  display: block;
+  font-size: 0px;
+  height: 0px;
+  visibility: hidden;
+}
+
+.posts,
+.projects {
+  padding-left: 20px;
+  /*padding-right: 100px;*/
+}
+/*.posts    .post    .title,
+.projects .project .title {
+  margin-top: 30px;
+  font-size: 20px;
+}*/
+.posts    .post    .date,
+.projects .project .date {
+  margin-left: 15px;
+  font-size: 16px;
+}
+.posts    .post    .extract,
+.projects .project .extract {
+  margin-top: 10px;
+  margin-left: 15px;
+  font-size: 16px;
+}
+
+.post .heading_image {
+  float: left;
+  padding-right: 30px;
+}
+
+.post h1 {
+  margin-bottom: 0px;
+  font-size: 23px;
+}
+.post h2 {
+  clear: both;
+  color: #580000;
+  font-variant: small-caps;
+}
+.post h3 {
+  font-variant: small-caps;
+}
+/*.date {
+  font-style: italic;
+}*/
+.post pre.old_code {
+  background-color: #F5F6E7;
+}
+
+code {
+  background-color: #fffde3;
+  border-radius: 5px;
+  margin: 0 3px;
+  padding: 1px 3px;
+}
+
+.highlight pre {
+  margin: 0px;
+}
+.github_link {
+  background-color: gray;
+  float: right;
+  margin-bottom: 0px;
+  font-family: monospace;
+}
+
+.demo {
+  margin: 0px auto;
+  margin-bottom: 40px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.date {
+
+}
+.post {
+
+}
+
+.repo {
+  margin: 10px;
+}
+
+.repo h3 {
+  margin-bottom: 1px;
+}
+
+
+li p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.contributions {
+  float: right;
+  border: aliceBlue;
+  padding: 10px;
+  border-style: solid;
+}
+
+.highlighttable td.code {
+  width: 100%;
+}

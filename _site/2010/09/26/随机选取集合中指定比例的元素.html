@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+ <title>Alex He - 随机选取集合中指定比例的元素</title>
+ <meta name="author" content="Alex He" />
+ <link rel="stylesheet" href="/stylesheets/master.css" type="text/css" media="screen" charset="utf-8"/>
+ <link rel="stylesheet" href="/stylesheets/vibrant_ink.css" type="text/css" media="screen" charset="utf-8"/>
+ <script src="/javascripts/jquery.js" type="text/javascript" charset="utf-8"></script>
+ <script src="/javascripts/jquery.github.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+
+  <div id="site">
+    <div id="header">      
+      <h1>发现过程之美</h1>
+      <div id="menu">        
+        <a href="http://www.zhulin.org.cn">Alex He的博客</a>      
+        <a href="/archives.html" id="blog_link">档案</a>      
+        <a href="/about_me.html" id="about_me">关于我</a>
+      </div>
+    </div>  
+    <div class = "clearfix"/>
+
+    <div id="content">
+      <div class="posts">
+  <div class="post">
+    <h1>随机选取集合中指定比例的元素</h1>
+    <div class="date">2010年09月26日</div> 
+    <div class="body">
+      <p>我们常常需要从一个大集合中选择一定比例的元素进行处理，但是这样选择一般需要是随机的。比如：</p>
+
+<ul>
+<li>从班集中选择1/3的同学打扫卫生；</li>
+
+<li>从文档集中选择7/10的文档作为机器学习模型的训练集；</li>
+</ul>
+
+<p>如何一般性的解决这个问题呢?</p>
+
+<p>首先对问题进行抽象描述：</p>
+
+<pre><code>设集合A包含n个元素,现需得到A的子集B,使得B集合中元素个数m满足指定要求,如(m/n=0.7等),即要从A中选择出m/n的元素. 另外元素的选择要满足随机性.这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。</code></pre>
+
+<p>乍一看这问题似乎很简单，它也的确简单, 这里我只是想给出另一种思路，并希望探讨该方法的可行性和它是否具有某种优势!</p>
+
+<p><strong>方案一</strong> 由于需要满足随机性，那么不可避免地需要使用随机数。</p>
+
+<p>一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开。</p>
+    </div>
+  </div>
+
+</div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'zhulin'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+    <!--<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'zhulin'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+  </script>-->
+
+    </div>
+
+    <hr/>
+    <div id="footer">
+      <div id="footer-inner">
+        <div id="footer-content">
+          <p>
+            <a href="/contact.html">联系方式</a> | zhulin.org.cn 2014
+          </p>
+        </div>
+      </div>
+    </div>    
+  </div>
+
+</body>
+
+</html>
