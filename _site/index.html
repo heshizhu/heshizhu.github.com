@@ -33,12 +33,27 @@
 <div class="posts">
   
   <div class="post">
-    <div class="title"><a href="/2014/02/02/MD%E6%96%87%E4%BB%B6.html">MD文件</a></div>
-    <div class="date">2014年02月02日</div>
+    <div class="title"><a href="/2014/02/15/ML%E8%AF%AD%E8%A8%80%E7%9A%84Option%E6%A6%82%E5%BF%B5.html">ML语言的Option概念</a></div>
+    <div class="date">2014年02月15日</div>
     <!--
-    #<div class="extract">新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始。  新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与新的锻炼开始与。</div>
+    #<div class="extract">下面的是ML语言中求一个整数数组最大值的函数： fun max(xs : int list) = (* 求一个整数数组的最大值 *) if null xs then 0 else let val left_max = max (tl xs) val curr_max = hd xs in if...</div>
     -->
-    <div class="extract"><p>新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始，新的锻炼开始。 </div>
+    <div class="extract"><p>下面的是ML语言中求一个整数数组最大值的函数：</p>
+<div class='highlight'><pre><code class='lisp'><span class='nv'>fun</span> <span class='nb'>max</span><span class='p'>(</span><span class='nv'>xs</span> <span class='err'>:</span> <span class='nv'>int</span> <span class='nb'>list</span><span class='p'>)</span> <span class='nb'>=</span> <span class='p'>(</span><span class='nb'>*</span> <span class='err'>求一个整数数组的最大值</span> <span class='nb'>*</span><span class='p'>)</span>
+    <span class='k'>if</span> <span class='nb'>null</span> <span class='nv'>xs</span> 
+    <span class='nv'>then</span> <span class='mi'>0</span> 
+    <span class='nv'>else</span>
+	<span class='k'>let</span> <span class='nv'>val</span> <span class='nv'>left_max</span> <span class='nb'>=</span> <span class='nb'>max</span> <span class='p'>(</span><span class='nv'>tl</span> <span class='nv'>xs</span><span class='p'>)</span>
+	    <span class='nv'>val</span> <span class='nv'>curr_max</span> <span class='nb'>=</span> <span class='nv'>hd</span> <span class='nv'>xs</span>
+	<span class='nv'>in</span>
+	    <span class='k'>if</span> <span class='nv'>curr_max</span> <span class='nb'>&gt;</span> <span class='nv'>left_max</span>
+	    <span class='nv'>then</span> <span class='nv'>curr_max</span>
+	    <span class='nv'>else</span> <span class='nv'>left_max</span>
+	<span class='nv'>end</span>
+</code></pre></div>
+<p>这个函数有一个问题，如果数组为空，它返回的是一个整数值0。这样我们就不能区分是否是这个数组含有最大值0，或者是数组为空。类似其他语言的，这里我们可以设置一个NULL值，在ML中，NONE可以表示空。但是如果你把返回的0换为NONE，会出现一个编译错误。</p>
+
+<p>为什么呢？因为，NONE和整数不是一个类型，而ML又是强类型语言，其在类型检查的时候发现返回值类型不一致就会报错。怎么办呢？是否可以使空值和一般值包装成同样一种类型。 </div>
   </div>
   <br/>
   
@@ -46,7 +61,7 @@
     <div class="title"><a href="/2014/02/01/MD%E6%A0%BC%E5%BC%8F%E5%AD%A6%E4%B9%A0.html">MD文件的格式学习</a></div>
     <div class="date">2014年02月01日</div>
     <!--
-    #<div class="extract">中文中文百度百科是一个大的百科知识库。 我们需要 用好的 玩好他 浏览量 第一集 文字文字 第二集 文字文字 第三集 文字文字 好东西要大家分享 斜体 好不好 有TAB键 一样 粗体 好不爱红 队徽 不是 赭石色 水电费计算点击 三等奖辅导教师 SD卡句法IDS家 下面是图像 另一个图片 听说颜色不一样不知道是不是真的 $ echo %path%...</div>
+    #<div class="extract">中文中文百度百科是一个大的百科知识库。 我们需要 用好的 玩好他 浏览量 第一集 文字文字 第二集 文字文字 这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思，这是什么意思。 第三集 文字文字 (括号是否可以可以这样打) 好东西要大家分享 斜体 好不好 有TAB键 一样 粗体 好不爱红 队徽 不是 赭石色 水电费计算点击 三等奖辅导教师 SD卡句法IDS家 下面是图像 另一个图片 听说颜色不一样不知道是不是真的 $...</div>
     -->
     <div class="extract"><p>中文中文<a href="http://baike.baidu.com">百度百科</a>是一个大的百科知识库。 我们需要</p>
 
@@ -65,23 +80,7 @@
     <div class="title"><a href="/2010/09/26/%E9%9A%8F%E6%9C%BA%E9%80%89%E5%8F%96%E9%9B%86%E5%90%88%E4%B8%AD%E6%8C%87%E5%AE%9A%E6%AF%94%E4%BE%8B%E7%9A%84%E5%85%83%E7%B4%A0.html">随机选取集合中指定比例的元素</a></div>
     <div class="date">2010年09月26日</div>
     <!--
-    #<div class="extract">我们常常需要从一个大集合中选择一定比例的元素进行处理，但是这样选择一般需要是随机的。比如：
-
-
-从班集中选择1/3的同学打扫卫生；
-
-从文档集中选择7/10的文档作为机器学习模型的训练集；
-
-
-如何一般性的解决这个问题呢?  首先对问题进行抽象描述：
-
-设集合A包含n个元素,现需得到A的子集B,使得B集合中元素个数m满足指定要求,如(m/n=0.7等),即要从A中选择出m/n的元素. 另外元素的选择要满足随机性.这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。
-
-乍一看这问题似乎很简单，它也的确简单, 这里我只是想给出另一种思路，并希望探讨该方法的可行性和它是否具有某种优势!
-
-方案一 由于需要满足随机性，那么不可避免地需要使用随机数。
-
-一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开。</div>
+    #<div class="extract">我们常常需要从一个大集合中选择一定比例的元素进行处理，但是这样选择一般需要是随机的。比如： 从班集中选择1/3的同学打扫卫生； 从文档集中选择7/10的文档作为机器学习模型的训练集； 如何一般性的解决这个问题呢? 首先对问题进行抽象描述： 设集合A包含n个元素,现需得到A的子集B,使得B集合中元素个数m满足指定要求,如(m/n=0.7等),即要从A中选择出m/n的元素. 另外元素的选择要满足随机性. 乍一看这问题似乎很简单，它也的确简单, 这里我只是想给出另一种思路，并希望探讨该方法的可行性和它是否具有某种优势! 方案一 由于需要满足随机性，那么不可避免地需要使用随机数。需要从n个数(不妨设为数)中选择随机选择m个数，是否可以每次都从n个数中随机选择一个数丢进集合B中，直到B中元素个数为m。 for(int i = 0; i &lt; m; i++) { index = random.nextInt(n);//返回0到n-1的随机数 B.add(A.get(index)); } 虽然上面的时间耗费很小：O(m)(不考虑从集合中取元素和存元素那些复杂的分析步骤)，但是很明显上面的方法有问题，因为这里的伪随机数可能选择重复了，也即这里是有放回的样本抽取问题。可分析选择出不含重复元素的集合B概率, 随着m的增大，其概率是很小的。 为了满足不重复性，可以使用下面的方法： while(B.size() &lt;...</div>
     -->
     <div class="extract"><p>我们常常需要从一个大集合中选择一定比例的元素进行处理，但是这样选择一般需要是随机的。比如：</p>
 
@@ -91,7 +90,23 @@
 <li>从文档集中选择7/10的文档作为机器学习模型的训练集；</li>
 </ul>
 
-<p>如何一般性的解决这个问题呢? </div>
+<p>如何一般性的解决这个问题呢?</p>
+
+<p>首先对问题进行抽象描述：</p>
+
+<blockquote>
+<p>设集合A包含n个元素,现需得到A的子集B,使得B集合中元素个数m满足指定要求,如(m/n=0.7等),即要从A中选择出m/n的元素. 另外元素的选择要满足随机性.</p>
+</blockquote>
+
+<p>乍一看这问题似乎很简单，它也的确简单, 这里我只是想给出另一种思路，并希望探讨该方法的可行性和它是否具有某种优势!</p>
+
+<p><strong>方案一</strong> 由于需要满足随机性，那么不可避免地需要使用随机数。需要从n个数(不妨设为数)中选择随机选择m个数，是否可以每次都从n个数中随机选择一个数丢进集合B中，直到B中元素个数为m。</p>
+<div class='highlight'><pre><code class='java'><span class='k'>for</span><span class='o'>(</span><span class='kt'>int</span> <span class='n'>i</span> <span class='o'>=</span> <span class='mi'>0</span><span class='o'>;</span> <span class='n'>i</span> <span class='o'>&lt;</span> <span class='n'>m</span><span class='o'>;</span> <span class='n'>i</span><span class='o'>++)</span>
+<span class='o'>{</span>
+    <span class='n'>index</span> <span class='o'>=</span> <span class='n'>random</span><span class='o'>.</span><span class='na'>nextInt</span><span class='o'>(</span><span class='n'>n</span><span class='o'>);</span><span class='c1'>//返回0到n-1的随机数</span>
+    <span class='n'>B</span><span class='o'>.</span><span class='na'>add</span><span class='o'>(</span><span class='n'>A</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='n'>index</span><span class='o'>));</span>
+<span class='o'>}</span>
+</code></pre></div></div>
   </div>
   <br/>
   

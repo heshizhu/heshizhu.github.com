@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+ <title>Alex He - ML语言的Option概念</title>
+ <meta name="author" content="Alex He" />
+ <link rel="stylesheet" href="/stylesheets/master.css" type="text/css" media="screen" charset="utf-8"/>
+ <link rel="stylesheet" href="/stylesheets/vibrant_ink.css" type="text/css" media="screen" charset="utf-8"/>
+ <script src="/javascripts/jquery.js" type="text/javascript" charset="utf-8"></script>
+ <script src="/javascripts/jquery.github.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+
+  <div id="site">
+    <div id="header">      
+      <h1>发现过程之美</h1>
+      <div id="menu">        
+        <a href="http://www.zhulin.org.cn">Alex He的博客</a>      
+        <a href="/archives.html" id="blog_link">档案</a>      
+        <a href="/about_me.html" id="about_me">关于我</a>
+      </div>
+    </div>  
+    <div class = "clearfix"/>
+
+    <div id="content">
+      <div class="posts">
+  <div class="post">
+    <h1>ML语言的Option概念</h1>
+    <div class="date">2014年02月15日</div> 
+    <div class="body">
+      <p>下面的是ML语言中求一个整数数组最大值的函数：</p>
+<div class='highlight'><pre><code class='lisp'><span class='nv'>fun</span> <span class='nb'>max</span><span class='p'>(</span><span class='nv'>xs</span> <span class='err'>:</span> <span class='nv'>int</span> <span class='nb'>list</span><span class='p'>)</span> <span class='nb'>=</span> <span class='p'>(</span><span class='nb'>*</span> <span class='err'>求一个整数数组的最大值</span> <span class='nb'>*</span><span class='p'>)</span>
+    <span class='k'>if</span> <span class='nb'>null</span> <span class='nv'>xs</span> 
+    <span class='nv'>then</span> <span class='mi'>0</span> 
+    <span class='nv'>else</span>
+	<span class='k'>let</span> <span class='nv'>val</span> <span class='nv'>left_max</span> <span class='nb'>=</span> <span class='nb'>max</span> <span class='p'>(</span><span class='nv'>tl</span> <span class='nv'>xs</span><span class='p'>)</span>
+	    <span class='nv'>val</span> <span class='nv'>curr_max</span> <span class='nb'>=</span> <span class='nv'>hd</span> <span class='nv'>xs</span>
+	<span class='nv'>in</span>
+	    <span class='k'>if</span> <span class='nv'>curr_max</span> <span class='nb'>&gt;</span> <span class='nv'>left_max</span>
+	    <span class='nv'>then</span> <span class='nv'>curr_max</span>
+	    <span class='nv'>else</span> <span class='nv'>left_max</span>
+	<span class='nv'>end</span>
+</code></pre></div>
+<p>这个函数有一个问题，如果数组为空，它返回的是一个整数值0。这样我们就不能区分是否是这个数组含有最大值0，或者是数组为空。类似其他语言的，这里我们可以设置一个NULL值，在ML中，NONE可以表示空。但是如果你把返回的0换为NONE，会出现一个编译错误。</p>
+
+<p>为什么呢？因为，NONE和整数不是一个类型，而ML又是强类型语言，其在类型检查的时候发现返回值类型不一致就会报错。怎么办呢？是否可以使空值和一般值包装成同样一种类型。 <!--more--></p>
+
+<p>为此，ML语言发明了一个Option的概念，可以类比类型(type)的概念去理解它。NONE就是一种Option，任意的值也可以包装成对应的Option。比如，把整数5包装成Option可以使用表达式SOME 5;</p>
+
+<p>ML中涉及到的函数和值有：</p>
+
+<ul>
+<li>NONE #表示空值Option</li>
+
+<li>SOME e #表示把表达式e的值包成对应的Option</li>
+
+<li>isSome t #查看t是否为SOME，如果t为NONE则返回false，如果为SOME则返回true</li>
+
+<li>valOf t #得到SOME包装的值，比如valOf (SOME 5);为5</li>
+</ul>
+
+<p>上面的函数使用Option改写如下：</p>
+<div class='highlight'><pre><code class='lisp'><span class='nv'>fun</span> <span class='nv'>max_better</span> <span class='p'>(</span><span class='nv'>xs</span> <span class='err'>:</span> <span class='nv'>int</span> <span class='nb'>list</span><span class='p'>)</span> <span class='nb'>=</span> 
+    <span class='k'>if</span> <span class='nb'>null</span> <span class='nv'>xs</span>
+    <span class='nv'>then</span> <span class='nv'>NONE</span>
+    <span class='nv'>else</span>
+	<span class='k'>let</span>
+	    <span class='nv'>val</span> <span class='nv'>curr_max</span> <span class='nb'>=</span> <span class='nv'>hd</span> <span class='nv'>xs</span>
+	    <span class='nv'>fun</span> <span class='nv'>max_have_value</span> <span class='p'>(</span><span class='nv'>xs</span> <span class='err'>:</span> <span class='nv'>int</span> <span class='nb'>list</span><span class='p'>)</span> <span class='nb'>=</span> 
+		    <span class='k'>if</span> <span class='nb'>null</span> <span class='p'>(</span><span class='nv'>tl</span> <span class='nv'>xs</span><span class='p'>)</span>
+		    <span class='nv'>then</span> <span class='nv'>curr_max</span>
+		    <span class='nv'>else</span>
+			<span class='k'>let</span> <span class='nv'>val</span> <span class='nv'>left_max</span> <span class='nb'>=</span> <span class='nv'>max_have_value</span> <span class='p'>(</span><span class='nv'>tl</span> <span class='nv'>xs</span><span class='p'>)</span>
+			<span class='nv'>in</span>
+			    <span class='k'>if</span> <span class='nv'>curr_max</span> <span class='nb'>&gt;</span> <span class='nv'>left_max</span>
+			    <span class='nv'>then</span> <span class='nv'>curr_max</span>
+			    <span class='nv'>else</span> <span class='nv'>left_max</span>
+			<span class='nv'>end</span>	    
+	<span class='nv'>in</span>
+	    <span class='nv'>SOME</span> <span class='p'>(</span><span class='nv'>max_have_value</span> <span class='nv'>xs</span><span class='p'>)</span>
+	<span class='nv'>end</span>
+</code></pre></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'zhulin'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+    <!--<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'zhulin'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+  </script>-->
+
+    </div>
+
+    <hr/>
+    <div id="footer">
+      <div id="footer-inner">
+        <div id="footer-content">
+          <p>
+            <a href="/contact.html">联系方式</a> | zhulin.org.cn 2014
+          </p>
+        </div>
+      </div>
+    </div>    
+  </div>
+
+</body>
+
+</html>

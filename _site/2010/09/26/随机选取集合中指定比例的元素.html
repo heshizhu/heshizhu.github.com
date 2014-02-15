@@ -38,15 +38,64 @@
 <li>从文档集中选择7/10的文档作为机器学习模型的训练集；</li>
 </ul>
 
-<p>如何一般性的解决这个问题呢? <!--more--> 首先对问题进行抽象描述：</p>
+<p>如何一般性的解决这个问题呢?</p>
 
-<pre><code>设集合A包含n个元素,现需得到A的子集B,使得B集合中元素个数m满足指定要求,如(m/n=0.7等),即要从A中选择出m/n的元素. 另外元素的选择要满足随机性.这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。这个是后面再加上的内容。</code></pre>
+<p>首先对问题进行抽象描述：</p>
+
+<blockquote>
+<p>设集合A包含n个元素,现需得到A的子集B,使得B集合中元素个数m满足指定要求,如(m/n=0.7等),即要从A中选择出m/n的元素. 另外元素的选择要满足随机性.</p>
+</blockquote>
 
 <p>乍一看这问题似乎很简单，它也的确简单, 这里我只是想给出另一种思路，并希望探讨该方法的可行性和它是否具有某种优势!</p>
 
-<p><strong>方案一</strong> 由于需要满足随机性，那么不可避免地需要使用随机数。</p>
+<p><strong>方案一</strong> 由于需要满足随机性，那么不可避免地需要使用随机数。需要从n个数(不妨设为数)中选择随机选择m个数，是否可以每次都从n个数中随机选择一个数丢进集合B中，直到B中元素个数为m。</p>
+<div class='highlight'><pre><code class='java'><span class='k'>for</span><span class='o'>(</span><span class='kt'>int</span> <span class='n'>i</span> <span class='o'>=</span> <span class='mi'>0</span><span class='o'>;</span> <span class='n'>i</span> <span class='o'>&lt;</span> <span class='n'>m</span><span class='o'>;</span> <span class='n'>i</span><span class='o'>++)</span>
+<span class='o'>{</span>
+    <span class='n'>index</span> <span class='o'>=</span> <span class='n'>random</span><span class='o'>.</span><span class='na'>nextInt</span><span class='o'>(</span><span class='n'>n</span><span class='o'>);</span><span class='c1'>//返回0到n-1的随机数</span>
+    <span class='n'>B</span><span class='o'>.</span><span class='na'>add</span><span class='o'>(</span><span class='n'>A</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='n'>index</span><span class='o'>));</span>
+<span class='o'>}</span>
+</code></pre></div><!--more-->
+<p>虽然上面的时间耗费很小：O(m)(不考虑从集合中取元素和存元素那些复杂的分析步骤)，但是很明显上面的方法有问题，因为这里的伪随机数可能选择重复了，也即这里是有放回的样本抽取问题。可分析选择出不含重复元素的集合B概率, 随着m的增大，其概率是很小的。</p>
 
-<p>一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开一个大的与菊花开。</p>
+<p>为了满足不重复性，可以使用下面的方法：</p>
+<div class='highlight'><pre><code class='java'><span class='k'>while</span><span class='o'>(</span><span class='n'>B</span><span class='o'>.</span><span class='na'>size</span><span class='o'>()</span> <span class='o'>&lt;</span> <span class='n'>m</span> <span class='o'>)</span>
+<span class='o'>{</span>
+    <span class='n'>index</span> <span class='o'>=</span> <span class='n'>random</span><span class='o'>.</span><span class='na'>nextInt</span><span class='o'>(</span><span class='n'>n</span><span class='o'>);</span>
+    <span class='k'>if</span><span class='o'>(!</span><span class='n'>B</span><span class='o'>.</span><span class='na'>exist</span><span class='o'>(</span><span class='n'>index</span><span class='o'>))</span>
+        <span class='n'>B</span><span class='o'>.</span><span class='na'>add</span><span class='o'>(</span><span class='n'>A</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='n'>index</span><span class='o'>));</span>
+<span class='o'>}</span>
+</code></pre></div>
+<p>这样应该就可以避免元素的重复了，但是也应该看到这里的时间耗费要高很多，对于每个希望被选入的元素都要判断其是否存在于集合中。这里的耗费其实是很大的，特别是对于m/n越接近1，随机选择重复元素的可能性就会越大。这里的时间复杂度应该大致为O(m*n)。</p>
+<div class='highlight'><pre><code class='java'><span class='n'>HashSet</span> <span class='n'>hs</span><span class='o'>;</span><span class='c1'>//定义hashset</span>
+<span class='k'>while</span><span class='o'>(</span><span class='n'>B</span><span class='o'>.</span><span class='na'>size</span><span class='o'>()</span> <span class='o'>&lt;</span> <span class='n'>m</span><span class='o'>)</span>
+<span class='o'>{</span>
+    <span class='n'>index</span><span class='o'>=</span><span class='n'>random</span><span class='o'>.</span><span class='na'>nextInt</span><span class='o'>(</span><span class='n'>n</span><span class='o'>);</span>
+    <span class='k'>if</span><span class='o'>(!</span><span class='n'>hs</span><span class='o'>.</span><span class='na'>contains</span><span class='o'>(</span><span class='n'>index</span><span class='o'>))</span>
+    <span class='o'>{</span>
+        <span class='n'>hs</span><span class='o'>.</span><span class='na'>add</span><span class='o'>(</span><span class='n'>index</span><span class='o'>);</span>
+        <span class='n'>B</span><span class='o'>.</span><span class='na'>add</span><span class='o'>(</span><span class='n'>A</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='n'>index</span><span class='o'>));</span>
+    <span class='o'>}</span>
+<span class='o'>}</span>
+</code></pre></div>
+<p>这样用空间换时间其实实质没变。所以我认为它们还属于同一类方法。</p>
+
+<p><strong>方案二</strong> 同样，需要产生随机数来选择元素。不过这里我们用到使用频数来估计概率的方法来解决。对于每个元素，产生一个0-1的随机数，如果这个数小于m/n(如0.7)，那么我们则选择该元素；如果其大于等于m/n我们则不选。因为0-1的随机数是由一个均匀分布产生的，则我们有理由相信，对于大量的抽样，能够抽取到m/n个元素。也可以这样理解：对于每个元素，其有0.7的可能性属于A，有0.3的可能性属于A’(U-A)；那么通过无数次的选择这样的数，则我们有理由相信，其中有7/10的跑到了A’这边，而3/10跑到了A这边。</p>
+<div class='highlight'><pre><code class='java'><span class='k'>for</span><span class='o'>(</span><span class='kt'>int</span> <span class='n'>index</span> <span class='o'>=</span> <span class='mi'>0</span><span class='o'>;</span> <span class='n'>index</span> <span class='o'>&lt;</span> <span class='n'>n</span><span class='o'>;</span> <span class='n'>index</span><span class='o'>++)</span>
+<span class='o'>{</span>
+    <span class='kt'>float</span> <span class='n'>ram</span> <span class='o'>=</span> <span class='n'>random</span><span class='o'>.</span><span class='na'>nextFloat</span><span class='o'>();</span><span class='c1'>//产生从0-1.0间的随机数</span>
+    <span class='k'>if</span><span class='o'>(</span><span class='n'>ram</span> <span class='o'>&lt;</span> <span class='o'>(</span><span class='kt'>float</span><span class='o'>)</span><span class='n'>m</span><span class='o'>/</span><span class='n'>n</span><span class='o'>)</span>
+        <span class='n'>B</span><span class='o'>.</span><span class='na'>add</span><span class='o'>(</span><span class='n'>A</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='n'>index</span><span class='o'>));</span>
+<span class='o'>}</span>
+</code></pre></div>
+<p>很明显这里的时间耗费仅仅为O(n)，可能比O(m)要大些，不过该方法能保证得到没有重复的元素集合。</p>
+
+<p>但是，这里可能会存在问题：</p>
+
+<ol>
+<li>该方法在大量抽样的情况下满足(甚至是无穷情况)，而对于实际应用中是否可以使用该方法来模拟？</li>
+
+<li>由于random也是一个伪随机数，所以这种利用伪随机数到底是否可靠(可靠性到底有多少)？</li>
+</ol>
     </div>
   </div>
 
