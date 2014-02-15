@@ -1,1 +1,4 @@
+name: Alex He Blog
 baseurl:
+plugins: ./_plugins
+timezone: 'Asia/Shanghai'
