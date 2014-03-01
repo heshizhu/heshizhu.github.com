@@ -5,6 +5,7 @@ title: Available resources and tools for NLP
 Tags: NLP, resource, tool#标签
 Category: Research#类别
 
+
 ###Lexical Resouces
 * WordNet [http://wordnet.princeton.edu/](http://wordnet.princeton.edu/)
 * Wiktionary [http://www.wiktionary.org/](http://www.wiktionary.org/) API: [https://www.mediawiki.org/wiki/API:Main_page](https://www.mediawiki.org/wiki/API:Main_page)
